@@ -12,9 +12,9 @@ function Carousel() {
     
   
     const next = () =>{
-      console.log(slide.current.children)
+      
       //comprobamos si existen slides
-      if(slide.current.children){
+     
   
         //obtenemos el primer slide
           const firstElement = slide.current.children[0]
@@ -39,7 +39,7 @@ function Carousel() {
           }
   
           slide.current.addEventListener('transitionend', reset)
-      }
+      
     }
   
       const back = () =>{
