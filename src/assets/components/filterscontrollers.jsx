@@ -1,4 +1,4 @@
-import { useId } from "react";
+import { useEffect, useId } from "react";
 import { useFilter } from "../../hooks/useFilter";
 
 export function FiltersControllers() {
@@ -7,16 +7,22 @@ export function FiltersControllers() {
     const categoryFilterId = useId();
     const { setFilters, filters } = useFilter();
    
-  
+
+
     const handleMinPrice = (event) => {
+  
+      setFilters((prevFilters) => ({ ...prevFilters, minPrice: event.target.value }));
      
-      setFilters({ ...filters, minPrice: event.target.value });
     };
-  
+
     const handleCategory = (event) => {
-      setFilters({ ...filters, category: event.target.value });
+      setFilters((prevFilters) => ({ ...prevFilters, category: event.target.value  }));
     };
   
+   
+
+  
+
     return (
       <section className="absolute top-32 left-0">
         <div>
@@ -27,7 +33,7 @@ export function FiltersControllers() {
             type="range"
             id={minPriceFilterId}
             min="0"
-            max="1000"
+            max="3000"
             onChange={handleMinPrice}
             value={filters.minPrice}
           />

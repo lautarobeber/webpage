@@ -1,5 +1,5 @@
 
-import React from "react";
+import { React, useState } from "react";
 import { useCart } from "./hooks/useCart";
 import Carousel from "./assets/components/carousel";
 import NavBar from "./assets/components/navbar";
@@ -7,7 +7,7 @@ import Titulo from "./assets/components/titlelistproducts";
 import ListProducts from "./assets/components/listproducts";
 import { FiltersControllers } from "./assets/components/filterscontrollers";
 import Footer from "./assets/components/footer";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useParams } from "react-router-dom";
 import "./App.css";
 import { CartProvider } from "./context/cart";
 import { CartProduct } from "./assets/components/cartProducts.jsx";
@@ -16,6 +16,13 @@ import Login from "./assets/components/login.jsx";
 import { AuthProvider } from "./context/auth";
 import { ProtectedRoute } from "./ProtectedRoute";
 import  AddProduct  from "./assets/components/addproduct.jsx";
+import { ProductsProvider } from "./context/products";
+import { useProducts } from "./hooks/useProducts";
+import { paymentCreateRequest } from "./api/payment";
+import Order from "./assets/components/order.jsx"
+import Product from "./assets/components/product";
+import { SuccesPage}  from "./assets/components/successpage.jsx";
+
 
 
 function Cart() {
@@ -69,11 +76,12 @@ function Cart() {
 
 
 
+
 function App() {
   return (
    
 
-   
+  
     <CartProvider>
       <NavBar />
       <Routes>
@@ -92,7 +100,16 @@ function App() {
             <div>
               <Titulo />
               <ListProducts />
-              <FiltersControllers />
+            
+              <Footer />
+            </div>
+          }
+        />
+        <Route
+          path="/products/:id"
+          element={
+            <div>
+              <Product />
               <Footer />
             </div>
           }
@@ -115,7 +132,27 @@ function App() {
             </div>
           }
         />
+        <Route
+          path="/order"
+          element={
+            <div>
+              <Order />
+              <Footer />
+              
+            </div>
+          }
+        />
+
         <Route element={<ProtectedRoute/>}>
+          <Route path="/succes"
+            element={
+              <div>
+                <SuccesPage />   
+                <Footer />
+              </div>
+            }>
+
+          </Route>
         
           <Route
             path="/cart"
@@ -140,6 +177,7 @@ function App() {
        </Route>
       </Routes>
     </CartProvider>
+   
     
   );
 }

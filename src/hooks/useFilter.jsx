@@ -1,22 +1,35 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { FiltersContext } from "../context/filters";
 import { products as initialProducts } from '../mocks/products.json'
+import { ProductsProvider } from "../context/products";
+
 
 export function useFilter () {
   
+  const context = useContext(FiltersContext)
   
-    const {filters, setFilters, products} = useContext(FiltersContext)
+ /*  const {products} = useContext(ProductsProvider);
+
   
   
   
-  
-    const filteredProducts = products.filter((product) => {
+  const filterProducts = (products) => {
+    return products.filter(product  => {
       return (
         product.price >= filters.minPrice &&
-        (filters.category === "all" || product.category === filters.category)
-      );
-    });
-  
-    return {filteredProducts, setFilters, filters}
+        (
+          filters.category === 'all' ||
+          product.category === filters.category
+        )
+      )
+    })
+  } */
+
+  if (!context) {
+    throw new Error ("UseFilters must be within product provider")
+}
+
+
+    return context
   
   }
