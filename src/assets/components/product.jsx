@@ -1,26 +1,35 @@
 import { useFilter } from "../../hooks/useFilter";
 import { useCart } from "../../hooks/useCart";
 import { useProducts } from "../../hooks/useProducts";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { getProductsRequest } from "../../api/product";
 import { initMercadoPago, Wallet } from '@mercadopago/sdk-react'
 import  axios  from "axios";
+import Order from "./order";
 
 
 function Product () {
     const { id } = useParams()
     
     const {products} = useProducts()
-    const [preferenceId, setPreferenceId] = useState(null);
-  
+    /* const [preferenceId, setPreferenceId] = useState(null); */
+    const navigate = useNavigate();
+
+   
+
+    
     const filteredProduct = products.filter(product => product._id === id)
-  
+    
     if (filteredProduct.length === 0) {
       return <div>Cargando productos...</div>;
     }
-  
-    initMercadoPago("TEST-daeabcc2-da17-4b7d-a3ea-743200111ae6");
+    
+    const handleComprarClick = () => {
+      // Redirige al usuario a la página de compra y pasa el ID del producto como parámetro
+      navigate(`/order?id=${id}&nombre=${filteredProduct[0].name}&price=${filteredProduct[0].price}`);
+    };
+    /* initMercadoPago("TEST-daeabcc2-da17-4b7d-a3ea-743200111ae6");
   
     const createPreference = async (product) => {
       try {
@@ -41,17 +50,19 @@ function Product () {
     const handleBuy = async (product) => {
       const id = await createPreference(product);
       if (id) {
+
         setPreferenceId(id);
       }
     };
   
   
-  
+   */
    
   
   
   
     return(
+        <>
       <div className="flex font-sans ml-32 mt-32 border border-solid border-gray-300">
     <div className="flex-none w-48 relative">
       <img src={filteredProduct[0].src} alt="" className="absolute inset-0 w-full h-full object-cover" />
@@ -102,7 +113,7 @@ function Product () {
       </div>
       <div className="flex space-x-4 mb-6 text-sm font-medium">
         <div className="flex-auto flex space-x-4">
-        <button className='ml-12 text-red-500' type='button' onClick={()=>handleBuy(filteredProduct[0])}  >
+        <button className='ml-12 text-red-500' type='button' onClick={handleComprarClick}/*  onClick={()=>handleBuy(filteredProduct[0])} */  >
                 
                 Comprar
               </button>
@@ -110,13 +121,15 @@ function Product () {
             Añadir al carrito
           </button>
         </div>
-        {preferenceId &&<button  type="button"
+        
+      {/*   {preferenceId &&<button  type="button"
   onClick={(e) => {
     e.preventDefault(); // Evita la recarga de la página
     // Tu lógica para redirigir al pago aquí
+
   }}>
     <Wallet initialization={{ preferenceId }} />
-    </button >    }
+    </button >    } */}
         
       </div>
       <p className="text-sm text-green-500">
@@ -124,6 +137,8 @@ function Product () {
       </p>
     </form>
   </div>
+   {/*  {showform && <Order/ >} */}
+   </>
     )
   }
 

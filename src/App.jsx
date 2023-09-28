@@ -10,6 +10,7 @@ import Footer from "./assets/components/footer";
 import { Route, Routes, useParams } from "react-router-dom";
 import "./App.css";
 import { CartProvider } from "./context/cart";
+import { OrderProvider } from "./context/order";
 import { CartProduct } from "./assets/components/cartProducts.jsx";
 import Register from "./assets/components/register";
 import Login from "./assets/components/login.jsx";
@@ -22,6 +23,7 @@ import { paymentCreateRequest } from "./api/payment";
 import Order from "./assets/components/order.jsx"
 import Product from "./assets/components/product";
 import { SuccesPage}  from "./assets/components/successpage.jsx";
+import OrderTable from "./assets/components/listorders";
 
 
 
@@ -83,6 +85,7 @@ function App() {
 
   
     <CartProvider>
+      <OrderProvider>
       <NavBar />
       <Routes>
         <Route
@@ -144,6 +147,7 @@ function App() {
         />
 
         <Route element={<ProtectedRoute/>}>
+        
           <Route path="/succes"
             element={
               <div>
@@ -153,7 +157,15 @@ function App() {
             }>
 
           </Route>
-        
+          <Route path="/orders-list"
+            element={
+              <div>
+                <OrderTable />   
+                <Footer />
+              </div>
+            }>
+
+          </Route>
           <Route
             path="/cart"
             element={
@@ -176,6 +188,7 @@ function App() {
 
        </Route>
       </Routes>
+      </OrderProvider>
     </CartProvider>
    
     

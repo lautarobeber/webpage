@@ -86,66 +86,63 @@ function Carousel() {
         },[])
       
     
-    
+        
     return (
       <section className="w-full h-full bg-blue-500 h-screen bg-cover bg-center" style={{
-        backgroundImage: `url(${img4})`,
-      }}>
-
-      <div className=" containter overflow-hidden relative my-auto mx-auto w-96  ">
-        <div className="flex flex-nowrap z-10 pt-10 " ref={slide}>
-          <div className="min-w-full relative transition-all duration-300 ease-in-out z-9 max-h-300">
-            <a href="/products">
-              <img
-                className="object-cover w-full h-full "
-                src={img1}
-                alt=""
-                ></img>
-            </a>
-            <div className="">
-              <p className=" absolute bottom-0 w-full h-11 pt-2 text-lg text-white font-bold text-center bg-black opacity-30">
-                Productos
-              </p>
-            </div>
-          </div>
-          <div className="min-w-full relative transition-all duration-300 ease-in-out z-9 max-h-300">
-            <a href="/products">
-              <img className="object-cover w-full h-full" src={img2} alt=""></img>
-            </a>
-            <div>
-              <p className=" absolute bottom-0 w-full h-11 pt-2 text-lg text-white font-bold text-center bg-black opacity-30">Productos</p>
-            </div>
-          </div>
-          <div className="min-w-full relative transition-all duration-300 ease-in-out z-9 max-h-300">
-            <a href="/products">
-              <img className="object-cover w-full h-full" src={img3} alt=""></img>
-            </a>
-            <div>
-              <p className=" absolute bottom-0 w-full h-11 pt-2 text-lg text-white font-bold text-center bg-black opacity-30">Productos</p>
-            </div>
-          </div>
-        </div>
-        <div className="">
-          <button onClick={back} className="absolute h-full top-0 left-0 z-10 hover:text-gray-900">
-            <svg
-              className="w-6 text-gray-500"
-              xmlns="http://www.w3.org/2000/svg"
-              >
-              <image className="" href={flechaizq} />
-            </svg>
-          </button>
-          
-          <button onClick={next} className="absolute h-full top-0 right-0 z-10 hover:text-gray-900">
-            <svg
-              className="w-6 text-gray-500 "
-              xmlns="http://www.w3.org/2000/svg"
-              >
-              <image className="" href={flechader} />
-            </svg>
-          </button>
+          backgroundImage: `url(${img4})`,
+        }}>
+  <div className="container overflow-hidden relative my-auto mx-auto w-96 rounded-lg">
+    <div className="flex flex-nowrap z-10 pt-10" ref={slide}>
+      <div className="min-w-full relative transition-all duration-300 ease-in-out z-9 max-h-300 rounded-lg overflow-hidden">
+        <a href="/products">
+          <img
+            className="object-cover w-full h-full"
+            src={img1}
+            alt=""
+          />
+        </a>
+        <div className="bg-black bg-opacity-30 absolute bottom-0 w-full h-11 pt-2 text-lg text-white font-bold text-center">
+          Productos
         </div>
       </div>
-              </section>
+      <div className="min-w-full relative transition-all duration-300 ease-in-out z-9 max-h-300 rounded-lg overflow-hidden">
+        <a href="/products">
+          <img className="object-cover w-full h-full" src={img2} alt="" />
+        </a>
+        <div>
+          <p className="absolute bottom-0 w-full h-11 pt-2 text-lg text-white font-bold text-center bg-black opacity-30">Productos</p>
+        </div>
+      </div>
+      <div className="min-w-full relative transition-all duration-300 ease-in-out z-9 max-h-300 rounded-lg overflow-hidden">
+        <a href="/products">
+          <img className="object-cover w-full h-full" src={img3} alt="" />
+        </a>
+        <div>
+          <p className="absolute bottom-0 w-full h-11 pt-2 text-lg text-white font-bold text-center bg-black opacity-30">Productos</p>
+        </div>
+      </div>
+    </div>
+    <div className="">
+      <button onClick={back} className="absolute h-full top-0 left-0 z-10 hover:text-gray-900">
+        <svg
+          className="w-6 text-gray-500"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <image className="" href={flechaizq} />
+        </svg>
+      </button>
+
+      <button onClick={next} className="absolute h-full top-0 right-0 z-10 hover:text-gray-900">
+        <svg
+          className="w-6 text-gray-500"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <image className="" href={flechader} />
+        </svg>
+      </button>
+    </div>
+  </div>
+</section>
     );
   }
 
